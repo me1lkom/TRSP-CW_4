@@ -1,17 +1,15 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from models import Product
-import os
-from dotenv import load_dotenv
+import sqlite3
 
-load_dotenv()
+conn = sqlite3.connect('app.db')
+cursor = conn.cursor()
 
-engine = create_engine(os.getenv("DATABASE_URL"))
-Session = sessionmaker(bind=engine)
-session = Session()
+sql_command = """insert into product (title, price, count) values (?, ?, ?) """
 
-session.add_all([
-    Product(title="Товар 1", price=100, count=5),
-    Product(title="Товар 2", price=200, count=10)
-])
-session.commit()
+data1 = ('Арбуз', 100, 3)
+data2 = ('Клубника', 500, 10)
+
+cursor.execute(sql_command, data1)
+cursor.execute(sql_command, data2)
+
+conn.commit()
+conn.close()

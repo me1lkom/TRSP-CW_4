@@ -6,8 +6,7 @@ from sqlalchemy import pool
 from alembic import context
 
 import sys
-sys.path.append('../') 
-
+sys.path.append('../')
 from database import Base
 import models
 
