@@ -8,6 +8,6 @@ class product(Base):
     title: Mapped[str] = mapped_column(String(50))
     price: Mapped[float] = mapped_column(Float)
     count: Mapped[int] = mapped_column(Integer)
-    description: Mapped[str] = mapped_column(String(255), nullable=False)
+    description: Mapped[str] = mapped_column(String(255), nullable=False, server_default="")
     
     
